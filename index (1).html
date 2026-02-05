@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarjan Karki | Informatiker & Automatisierung</title>
+  <meta name="description" content="Portfolio von Sarjan Karki – Informatiker mit Fokus auf SPS-Programmierung, Automatisierungstechnik und Softwareentwicklung." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/4e9b1b4c7c.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #020817;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --danger: #f97373;
+      --success: #22c55e;
+      --shadow-soft: 0 24px 60px rgba(15,23,42,0.75);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-full: 999px;
+      --nav-height: 70px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* Glassmorphism background wrapper */
+    .shell {
+      margin-top: 1.5rem;
+      border-radius: 26px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.08), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(56,189,248,0.08), transparent 55%),
+                  linear-gradient(145deg, rgba(15,23,42,0.98), rgba(3,7,18,0.98));
+      box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+      border: 1px solid rgba(148,163,184,0.18);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0, rgba(56,189,248,0.16), transparent 45%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(22px);
+      background: rgba(2,6,23,0.85);
+      border-bottom: 1px solid rgba(15,23,42,0.9);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: conic-gradient(from 140deg, #22d3ee, #3b82f6, #6366f1, #22d3ee);
+      position: relative;
+      box-shadow: 0 0 18px rgba(56,189,248,0.9);
+    }
+
+    .logo-mark::after {
+      content: "S";
+      position: absolute;
+      inset: 4px;
+      border-radius: 999px;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.4rem;
+      font-size: 0.92rem;
+    }
+
+    nav a {
+      position: relative;
+      color: var(--muted);
+      padding-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0ea5e9, #22c55e);
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-pill {
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 2.5rem 1.8rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .chip {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.85);
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--muted);
+    }
+
+    .chip i {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #38bdf8, #22c55e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.7rem 0 1.4rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.65rem 1.3rem;
+      border: 1px solid rgba(148,163,184,0.45);
+      background: rgba(15,23,42,0.9);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+      border-color: transparent;
+      box-shadow: 0 18px 40px rgba(34,197,94,0.38);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) translateZ(0);
+      box-shadow: 0 22px 55px rgba(14,165,233,0.4);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.95);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.75);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .hero-meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 0.7rem;
+      color: #6b7280;
+    }
+
+    .hero-meta-value {
+      color: #e5e7eb;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .hero-socials a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: rgba(15,23,42,0.9);
+      font-size: 0.85rem;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .hero-socials a:hover {
+      background: #0ea5e9;
+      color: #020617;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(14,165,233,0.6);
+    }
+
+    /* Hero right: profile + stats */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .profile-card {
+      border-radius: 26px;
+      padding: 1.2rem 1.2rem 1.5rem;
+      background:
+        radial-gradient(circle at 0 0, rgba(56,189,248,0.22), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(34,197,94,0.18), transparent 45%),
+        linear-gradient(145deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+      border: 1px solid rgba(148,163,184,0.25);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1.6fr;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .avatar-shell {
+      position: relative;
+      width: 100%;
+      border-radius: 22px;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 0, #22c55e 0, #0f172a 55%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-shell::before {
+      content: "";
+      position: absolute;
+      inset: -25%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56,189,248,0.52), transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(34,197,94,0.42), transparent 45%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+    }
+
+    .avatar {
+      position: relative;
+      z-index: 1;
+      width: 86%;
+      border-radius: 999px;
+      border: 2px solid rgba(15,23,42,0.95);
+      overflow: hidden;
+      box-shadow: 0 24px 45px rgba(15,23,42,0.9);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.15) contrast(1.05);
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #0f172a, #1f2937);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #f9fafb;
+    }
+
+    .profile-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .profile-text h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+      color: #e5e7eb;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      padding: 0.25rem 0.7rem;
+      font-size: 0.75rem;
+      color: #a5b4fc;
+      margin-bottom: 0.45rem;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .highlight {
+      color: #e5e7eb;
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0.55rem 0 0.3rem;
+    }
+
+    .profile-tags span {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.92);
+      border: 1px solid rgba(148,163,184,0.3);
+      color: #cbd5f5;
+    }
+
+    .profile-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      margin-top: 0.55rem;
+    }
+
+    .profile-row i {
+      color: var(--accent);
+      margin-right: 0.25rem;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .stat-card {
+      border-radius: 14px;
+      padding: 0.8rem 0.9rem;
+      background: rgba(15,23,42,0.94);
+      border: 1px solid rgba(31,41,55,0.9);
+      font-size: 0.8rem;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #e5e7eb;
+    }
+
+    /* Sections */
+    section {
+      padding: 0 1.8rem 2.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.2rem;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .section-title span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+      box-shadow: 0 0 18px rgba(56,189,248,0.95);
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 1.6rem;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(31,41,55,0.96);
+      padding: 1.1rem 1.15rem;
+      box-shadow: 0 20px 50px rgba(15,23,42,0.8);
+    }
+
+    .card h3 {
+      font-size: 0.96rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .skill-chip {
+      border-radius: 999px;
+      padding: 0.38rem 0.6rem;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.25rem;
+    }
+
+    .skill-chip span {
+      color: #e5e7eb;
+    }
+
+    .skill-level {
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .skill-pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+
+    .skill-pill {
+      font-size: 0.75rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      color: var(--muted);
+    }
+
+    /* Experience */
+    .timeline {
+      border-left: 1px solid rgba(55,65,81,0.9);
+      padding-left: 1rem;
+      margin-left: 0.5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 1.1rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.25rem;
+      top: 0.25rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: 2px solid #0ea5e9;
+      background: #020617;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.7rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-role {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .timeline-company {
+      font-size: 0.82rem;
+      color: #a5b4fc;
+    }
+
+    .timeline-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .timeline-list {
+      margin-top: 0.3rem;
+      padding-left: 0.9rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .timeline-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    /* Projects */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      border-radius: 16px;
+      padding: 0.9rem 0.95rem;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(31,41,55,0.96);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .project-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: baseline;
+    }
+
+    .project-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .project-tag {
+      font-size: 0.72rem;
+      color: #22d3ee;
+    }
+
+    .project-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.25rem;
+    }
+
+    .project-meta span {
+      font-size: 0.72rem;
+      padding: 0.16rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      color: #cbd5f5;
+    }
+
+    /* Education / Certificates */
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .edu-item {
+      margin-bottom: 0.75rem;
+    }
+
+    .edu-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .edu-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .cert-list {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .cert-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    /* Contact */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 1.2rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .field label {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(31,41,55,0.96);
+      border-radius: 12px;
+      padding: 0.55rem 0.65rem;
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 1px rgba(14,165,233,0.5);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-info {
+      border-radius: var(--radius-lg);
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(31,41,55,0.96);
+      padding: 1rem 1.05rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .contact-row i {
+      margin-top: 0.1rem;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(15,23,42,0.96);
+      background: rgba(2,6,23,0.96);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .section-grid,
+      .contact-layout,
+      .two-col,
+      .project-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .nav ul {
+        display: none;
+        position: absolute;
+        top: var(--nav-height);
+        right: 1.5rem;
+        background: rgba(15,23,42,0.98);
+        border-radius: 18px;
+        padding: 0.8rem 1rem;
+        border: 1px solid rgba(31,41,55,0.96);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.85);
+        flex-direction: column;
+        gap: 0.7rem;
+        width: 180px;
+      }
+
+      .nav ul.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .shell {
+        margin-top: 1rem;
+        border-radius: 20px;
+      }
+
+      .hero {
+        padding: 1.6rem 1.3rem 1.5rem;
+      }
+
+      section {
+        padding: 0 1.3rem 2rem;
+      }
+
+      .page {
+        padding: 0 1rem 3rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <span>Sarjan&nbsp;Karki</span>
+      </div>
+      <button class="nav-toggle" aria-label="Navigation umschalten">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Profil</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Berufserfahrung</a></li>
+          <li><a href="#projects">Projekte</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <div class="nav-pill">
+          <i class="fas fa-circle text-xs" style="color:#22c55e;"></i>
+          Offen für spannende Projekte
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="shell" id="home">
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="chip-row">
+            <div class="chip">
+              <i class="fas fa-code"></i>
+              Informatiker & SPS-Programmierer
+            </div>
+            <div class="chip">
+              <i class="fas fa-microchip"></i>
+              Automatisierungstechnik
+            </div>
+            <div class="chip">
+              <i class="fas fa-shield-alt"></i>
+              Interesse an Ethical Hacking
+            </div>
+          </div>
+          <h1 class="hero-title">
+            Hi, ich bin <span>Sarjan Karki</span>
+          </h1>
+          <p class="hero-subtitle">
+            Ich bin Informatiker mit Fokus auf <strong>Software‑ und Hardwareentwicklung</strong>,
+            SPS‑Programmierung und industrielle Automatisierung. [file:17]
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              Projekt anfragen
+            </a>
+            <a href="Lebenslauf_sarjanKarki.pdf" class="btn btn-ghost" download>
+              <i class="fas fa-file-download"></i>
+              CV herunterladen
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Schwerpunkt</span>
+              <span class="hero-meta-value">SPS, Automatisierung, Software</span> [file:17]
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Aktuelle Rolle</span>
+              <span class="hero-meta-value">Software Engineer bei GSEC GmbH</span> [file:17]
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Standort</span>
+              <span class="hero-meta-value">Region Konstanz / Berlin, Deutschland</span> [file:17]
+            </div>
+          </div>
+
+          <div class="hero-socials" aria-label="Social Links">
+            <a href="mailto:sarjankarki1998@gmail.com" title="E-Mail">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sarjan-karki-36b34a208" target="_blank" rel="noreferrer" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <!-- Demo GitHub/Portfolio placeholders -->
+            <a href="https://github.com/" target="_blank" rel="noreferrer" title="GitHub (Demo)">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <article class="profile-card" aria-label="Profilübersicht">
+            <div class="profile-inner">
+              <div class="avatar-shell">
+                <!-- Replace src with your real photo path -->
+                <div class="avatar">
+                  <!-- Demo placeholder: simple gradient avatar -->
+                  <div class="avatar-fallback">SK</div>
+                </div>
+              </div>
+              <div class="profile-text">
+                <span class="badge">
+                  <i class="fas fa-sparkles"></i>
+                  Fokus auf Qualität & Zuverlässigkeit
+                </span>
+                <h2>SPS‑Ingenieur & Softwareentwickler</h2>
+                <p>
+                  Ich entwickle und betreue Automatisierungslösungen von der SPS bis zur Inbetriebnahme,
+                  analysiere komplexe Anlagen und arbeite eng mit interdisziplinären Teams zusammen. [file:17]
+                </p>
+                <div class="profile-tags">
+                  <span>TIA Portal Siemens</span>
+                  <span>Automation Studio</span>
+                  <span>CoDeSys</span>
+                  <span>OPC UA</span>
+                  <span>Azure DevOps</span>
+                </div>
+                <div class="profile-row">
+                  <span><i class="fas fa-language"></i>Deutsch, Englisch, Nepalesisch, Hindi</span> [file:17]
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-card">
+                <div class="stat-label">Berufserfahrung</div>
+                <div class="stat-value">2+ Jahre Industrie‑Erfahrung</div> [file:17]
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Schwerpunktbranchen</div>
+                <div class="stat-value">Halbleiter, Energie, Photovoltaik</div> [file:17]
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Sprachen</div>
+                <div class="stat-value">5 gesprochene Sprachen</div> [file:17]
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-header">
+          <div class="section-title">
+            <span></span> Profil
+          </div>
+          <p class="section-subtitle">
+            Kurzer Überblick über meinen Hintergrund und meine Motivation.
+          </p>
+        </div>
+        <div class="section-grid">
+          <article class="card">
+            <h3>Über mich</h3>
+            <p>
+              Ich habe meinen Bachelor in Information und Kommunikationstechnik an der HTW Berlin abgeschlossen
+              und seitdem in verschiedenen Automatisierungs‑ und Softwareprojekten in Deutschland gearbeitet. [file:17]
+            </p>
+            <br />
+            <p>
+              Meine Stärken liegen in der Entwicklung robuster SPS‑Programme, der Analyse von Störungen in komplexen
+              Anlagen sowie in der Zusammenarbeit mit Projektteams von der Planung bis zur Inbetriebnahme. [file:17]
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Was ich aktuell suche</h3>
+            <p>
+              Ich bin offen für Rollen in der industriellen Automatisierung, Steuerungstechnik oder Softwareentwicklung,
+              in denen ich SPS‑Know‑how mit moderner Softwarepraxis verbinden kann. [file:17]
+            </p>
+            <br />
+            <p>
+              Besonders spannend finde ich Projekte mit hohem Automatisierungsgrad, z.B. Reinraumtechnik,
+              Energiezentralen oder smarte PV‑ und Lastmanagement‑Lösungen. [file:17]
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="section-header">
+          <div class="section-title">
+            <span></span> Skills
+          </div>
+          <p class="section-subtitle">
+            Programmiersprachen, Tools und Technologien, mit denen ich täglich arbeite.
+          </p>
+        </div>
+
+        <div class="section-grid">
+          <article class="card">
+            <h3>Programmiersprachen</h3>
+            <div class="skills-grid">
+              <div class="skill-chip">
+                <span>Java</span>
+                <span class="skill-level">Fortgeschritten</span>
+              </div>
+              <div class="skill-chip">
+                <span>JavaScript</span>
+                <span class="skill-level">Fortgeschritten</span>
+              </div>
+              <div class="skill-chip">
+                <span>Python</span>
+                <span class="skill-level">Fortgeschritten</span>
+              </div>
+              <div class="skill-chip">
+                <span>C</span>
+                <span class="skill-level">Fortgeschritten</span>
+              </div>
+              <div class="skill-chip">
+                <span>C++</span>
+                <span class="skill-level">Fortgeschritten</span>
+              </div>
+              <div class="skill-chip">
+                <span>HTML</span>
+                <span class="skill-level">Solide</span>
+              </div>
+            </div>
+            <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--muted);">
+              Zusätzlich arbeite ich routiniert mit MySQL, MS 365 (Excel, Word) und Linux‑Umgebungen. [file:17]
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Frameworks & Tools</h3>
+            <div class="skill-pill-group">
+              <span class="skill-pill">TIA Portal Siemens</span>
+              <span class="skill-pill">TwinCAT 3 (Beckhoff)</span>
+              <span class="skill-pill">CODESYS (WAGO)</span>
+              <span class="skill-pill">MATLAB / Simulink</span>
+              <span class="skill-pill">OPC UA</span>
+              <span class="skill-pill">AutoCAD</span>
+              <span class="skill-pill">Eagle</span>
+              <span class="skill-pill">TRIC (MSR)</span>
+              <span class="skill-pill">Sinumerik</span>
+              <span class="skill-pill">PV*SOL</span>
+              <span class="skill-pill">Git / GitLab</span>
+              <span class="skill-pill">Microsoft Azure</span>
+              <span class="skill-pill">Azure DevOps</span>
+              <span class="skill-pill">Power BI</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="section-header">
+          <div class="section-title">
+            <span></span> Berufserfahrung
+          </div>
+          <p class="section-subtitle">
+            Relevante Stationen in Automatisierung, Energie und Softwareentwicklung.
+          </p>
+        </div>
+
+        <div class="section-grid">
+          <article class="card">
+            <h3>Industrieerfahrung</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-header">
+                  <div>
+                    <div class="timeline-role">Software Engineer</div>
+                    <div class="timeline-company">GSEC GmbH · Radolfzell</div>
+                  </div>
+                  <div class="timeline-meta">11/2023 – heute</div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Erstellung und Anpassung von SPS‑Programmen mit Automation Studio / TIA Portal und OPC UA. [file:17]</li>
+                  <li>Fehleranalyse und Störungsbeseitigung an komplexen GFPS‑Reinigungssystemen für FOUPS. [file:17]</li>
+                  <li>Konzeption eines vollautomatischen EUV‑Pod‑Reinigers für AMHS‑integrierten HOST‑Betrieb. [file:17]</li>
+                  <li>Robot‑Teaching für Mitsubishi‑ und KUKA‑Roboter inkl. Fehlersuche. [file:17]</li>
+                  <li>Arbeit mit Git, TortoiseGit sowie Microsoft Azure & Azure DevOps. [file:17]</li>
+                </ul>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-header">
+                  <div>
+                    <div class="timeline-role">Automatisierungstechniker</div>
+                    <div class="timeline-company">Heitec AG · Berlin</div>
+                  </div>
+                  <div class="timeline-meta">02/2023 – 10/2023</div>
+                </div>
+                <ul class="timeline-list">
+                  <li>SPS‑Programmierung mit SIMATIC S7 / TIA Portal. [file:17]</li>
+                  <li>Störungsbeseitigung an Maschinen und Betriebsmitteln im Bereich Elektrik/Elektronik. [file:17]</li>
+                  <li>Analyse von Störungsursachen und nachhaltige Fehlerbehebung. [file:17]</li>
+                </ul>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-header">
+                  <div>
+                    <div class="timeline-role">Projektingenieur MSR / Automatisierung</div>
+                    <div class="timeline-company">EAB GmbH · Berlin</div>
+                  </div>
+                  <div class="timeline-meta">10/2022 – 02/2023</div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Planung, Ausschreibung und Bauüberwachung von Automatisierungs‑ und MSR‑Anlagen (LPH 1–9 HOAI). [file:17]</li>
+                  <li>Spezifikation von Sensoren, Aktoren, Schaltschränken und Leittechnik. [file:17]</li>
+                  <li>Entwicklung von Lösungen für Notstromanlagen, Energiezentralen und Lastmanagement. [file:17]</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Weitere Stationen</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-header">
+                  <div>
+                    <div class="timeline-role">Planung Photovoltaik (Werkstudent)</div>
+                    <div class="timeline-company">Enpal GmbH · Berlin</div>
+                  </div>
+                  <div class="timeline-meta">05/2022 – 10/2022</div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Planung und Visualisierung von PV‑Anlagen mit spezialisierter Planungssoftware. [file:17]</li>
+                  <li>Erstellung individueller Angebote und Teilnahme an virtuellen Kundenterminen. [file:17]</li>
+                </ul>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-header">
+                  <div>
+                    <div class="timeline-role">Praktikant</div>
+                    <div class="timeline-company">Optris GmbH · Berlin</div>
+                  </div>
+                  <div class="timeline-meta">08/2021 – 12/2021</div>
+                </div>
+                <ul class="timeline-list">
+                  <li>Recherche und Konzeption zu IR‑Sensoren und deren Schnittstellen. [file:17]</li>
+                  <li>Zusammenarbeit mit akademischen Betreuer:innen und Firmenpartnern. [file:17]</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="section-header">
+          <div class="section-title">
+            <span></span> Projekte
+          </div>
+          <p class="section-subtitle">
+            Eine Auswahl akademischer und industrieller Projekte, an denen ich gearbeitet habe.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-title-row">
+              <div class="project-title">Bachelorarbeit: SPS & berührungslose Temperaturmessung</div>
+              <span class="project-tag">Akademisch</span>
+            </div>
+            <p class="project-desc">
+              Anschluss eines berührungslosen Temperaturmessgeräts an eine SPS und Umsetzung eines Demonstrators,
+              inklusive HMI‑Visualisierung und GitLab‑Versionierung. [file:17]
+            </p>
+            <div class="project-meta">
+              <span>TIA Portal</span>
+              <span>HMI</span>
+              <span>C</span>
+              <span>GitLab / GitHub</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-title-row">
+              <div class="project-title">Weiterentwicklung Mercedes‑Benz Anlage</div>
+              <span class="project-tag">Industrie / Schulung</span>
+            </div>
+            <p class="project-desc">
+              Schulung und Implementierung mit Daimler Powertrain Templates in Verbindung mit TIA Portal,
+              inklusive Erweiterung von Antriebssystem‑Funktionen. [file:17]
+            </p>
+            <div class="project-meta">
+              <span>Powertrain / Integra</span>
+              <span>TIA Portal V15</span>
+              <span>Sinumerik</span>
+              <span>C</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-title-row">
+              <div class="project-title">Uni‑Projekt: Steuer‑ & Anzeigeprogramme</div>
+              <span class="project-tag">Universität</span>
+            </div>
+            <p class="project-desc">
+              Entwicklung eines Steuerprogramms für ein Werktor, BCD‑Dekoder für 7‑Segment‑Anzeige,
+              Ampelsteuerung sowie Temperaturanzeige mit DS18B20. [file:17]
+            </p>
+            <div class="project-meta">
+              <span>CoDeSys</span>
+              <span>Simulink</span>
+              <span>DigSim</span>
+              <span>Eagle</span>
+              <span>Cisco</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-title-row">
+              <div class="project-title">Zertifizierungen & Weiterbildung</div>
+              <span class="project-tag">Lernen</span>
+            </div>
+            <p class="project-desc">
+              Kontinuierliche Weiterbildung in Embedded‑Entwicklung, TIA Portal, Ethical AI und Ethical Hacking
+              über LinkedIn Learning. [file:17]
+            </p>
+            <div class="project-meta">
+              <span>Arduino Foundation</span>
+              <span>C Essential Training</span>
+              <span>TIA‑Portal Training</span>
+              <span>Ethical AI</span>
+              <span>Ethical Hacking</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education">
+        <div class="section-header">
+          <div class="section-title">
+            <span></span> Bildung & Zertifikate
+          </div>
+          <p class="section-subtitle">
+            Akademischer Hintergrund und relevante Weiterbildungen.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <article class="card">
+            <h3>Bildungsweg</h3>
+            <div class="edu-item">
+              <div class="edu-title">Bachelor of Engineering – Information und Kommunikationstechnik</div>
+              <div class="edu-meta">HTW Berlin · 08/2018 – 07/2022 · Berlin, Deutschland</div> [file:17]
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">Studienkolleg – T‑Kurs (Informatik, Physik, Mathematik)</div>
+              <div class="edu-meta">Hochschule Kaiserslautern · 02/2018 – 08/2018</div> [file:17]
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Zertifikate</h3>
+            <ul class="cert-list">
+              <li>Arduino: Foundation Course – LinkedIn Learning</li>
+              <li>C Essential Training – LinkedIn Learning</li>
+              <li>TIA‑Portal Siemens Training – LinkedIn Learning</li>
+              <li>Ethical AI Foundations – LinkedIn Learning</li>
+              <li>Ethical Hacking Training – LinkedIn Learning</li> [file:17]
+              <li>DAAD Studienabschluss‑Stipendium für die Bachelorarbeit</li> [file:17]
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-header">
+          <div class="section-title">
+            <span></span> Kontakt
+          </div>
+          <p class="section-subtitle">
+            Lassen Sie uns über Ihr nächstes Projekt sprechen.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <article class="card">
+            <h3>Schreiben Sie mir</h3>
+            <form class="contact-form" id="contact-form">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Ihr Name" required />
+              </div>
+              <div class="field">
+                <label for="email">E‑Mail</label>
+                <input id="email" name="email" type="email" placeholder="ihre.mail@example.com" required />
+              </div>
+              <div class="field">
+                <label for="message">Nachricht</label>
+                <textarea id="message" name="message" placeholder="Kurze Beschreibung des Projekts oder Anliegens" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i>
+                Nachricht senden (Demo)
+              </button>
+              <p id="form-status" style="font-size:0.78rem;color:var(--muted);margin-top:0.35rem;">
+                Dieses Formular ist aktuell als Demo konfiguriert. Für Produktivbetrieb können Sie es mit Diensten wie Formspree, Netlify Forms oder EmailJS verbinden.
+              </p>
+            </form>
+          </article>
+
+          <aside class="contact-info">
+            <div class="contact-row">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>E‑Mail</strong><br />
+                sarjankarki1998@gmail.com
+              </div>
+            </div>
+            <div class="contact-row">
+              <i class="fas fa-phone"></i>
+              <div>
+                <strong>Telefon (Demo)</strong><br />
+                +49 000 00000000
+              </div>
+            </div>
+            <div class="contact-row">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong>Standort</strong><br />
+                Raum Konstanz / Berlin, Deutschland
+              </div>
+            </div>
+            <div class="contact-row">
+              <i class="fab fa-linkedin-in"></i>
+              <div>
+                <strong>LinkedIn</strong><br />
+                <a href="https://www.linkedin.com/in/sarjan-karki-36b34a208" target="_blank" rel="noreferrer">
+                  linkedin.com/in/sarjan-karki-36b34a208
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Sarjan Karki · Alle Rechte vorbehalten.
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // Mobile nav toggle
+    const toggleBtn = document.querySelector(".nav-toggle");
+    const navLinks = document.getElementById("nav-links");
+    toggleBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      toggleBtn.innerHTML = navLinks.classList.contains("open")
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (navLinks.classList.contains("open")) {
+          navLinks.classList.remove("open");
+          toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      });
+    });
+
+    // Smooth scroll offset for sticky header
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        e.preventDefault();
+        const navHeight = document.querySelector("header").offsetHeight;
+        const rect = target.getBoundingClientRect();
+        const offsetTop = rect.top + window.pageYOffset - navHeight + 4;
+        window.scrollTo({ top: offsetTop, behavior: "smooth" });
+      });
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Demo form handler
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      status.style.color = "#22c55e";
+      status.textContent = "Danke! In der Demo wird die Nachricht nicht versendet – binde hier später deinen E-Mail-Dienst ein.";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
